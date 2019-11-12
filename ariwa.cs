@@ -94,7 +94,3 @@ namespace rename
         }
     }
 }
-public interface IHomework13
-{
-    IEnumerable<int> Homework13(IEnumerable<int> numbers);
-}
