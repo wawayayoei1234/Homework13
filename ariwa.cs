@@ -12,7 +12,7 @@ namespace rename
                 int uturn = check1(item);
                 if (uturn != 0)
                 {
-                Result.Add(uturn);
+                    Result.Add(uturn);
                 }
             }
             return Result;
@@ -20,29 +20,16 @@ namespace rename
         public static int check1(int item)
         {
             string savenumcha = null;
-            string r = String.Format("{0:D6}", item);
-            char[] numcha = r.ToCharArray();
+            string numcheck = String.Format("{0:D6}", item);
             {
-                if (numcha[4] == '9'&& numcha[5]=='9')
+                var wawa = (ceck2(numcheck, 5, 4, 3))
+                || (ceck1(numcheck, 0, 1, 2, 3))
+                || (ceck1(numcheck, 1, 2, 3, 4))
+                || (ceck1(numcheck, 2, 3, 4, 5))
+                || (ceck2(numcheck, 0, 1, 2));
+                if (wawa)
                 {
-                    if (numcha[3] != '9')
-                    {
-                        foreach (var it in numcha)
-                        {
-                            savenumcha += it;
-                        }
-                        int stot = int.Parse(savenumcha);
-                        int sum = stot;
-                        return sum;
-                    }
-                }
-            }
-            if (numcha[4] == '9' && numcha[3] == '9')
-            {
-                if (numcha[5] != '9' && numcha[2] != '9')
-                {
-
-                    foreach (var it in numcha)
+                    foreach (var it in numcheck)
                     {
                         savenumcha += it;
                     }
@@ -50,47 +37,16 @@ namespace rename
                     int sum = stot;
                     return sum;
                 }
+                return 0;
             }
-            if (numcha[3] == '9' && numcha[2] == '9')
-            {
-                if (numcha[4] != '9' && numcha[1] != '9')
-                {
-                    foreach (var it in numcha)
-                    {
-                        savenumcha += it;
-                    }
-                    int stot = int.Parse(savenumcha);
-                    int sum = stot;
-                    return sum;
-                }
-            }
-            if (numcha[2] == '9' && numcha[1] == '9')
-            {
-                if (numcha[3] != '9' && numcha[0] != '9')
-                {
-                    foreach (var it in numcha)
-                    {
-                        savenumcha += it;
-                    }
-                    int stot = int.Parse(savenumcha);
-                    int sum = stot;
-                    return sum;
-                }
-            }
-            if (numcha[1] == '9' && numcha[0] == '9')
-            {
-                if (numcha[2] != '9')
-                {
-                    foreach (var it in numcha)
-                    {
-                        savenumcha += it;
-                    }
-                    int stot = int.Parse(savenumcha);
-                    int sum = stot;
-                    return sum;
-                }
-            }
-            return 0;
+        }
+        public static bool ceck1(string numcheck, int a, int b, int c, int d)
+        {
+            return (numcheck[a] != '9' && numcheck[b] == '9' && numcheck[c] == '9' && numcheck[d] != '9');
+        }
+        public static bool ceck2(string numcheck, int a, int b, int c)
+        {
+            return (numcheck[a] == '9' && numcheck[b] == '9' && numcheck[c] != '9');
         }
     }
 }
