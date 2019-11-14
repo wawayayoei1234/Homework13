@@ -35,6 +35,7 @@ namespace rename
                     }
                     int stot = int.Parse(savenumcha);
                     int sum = stot;
+                    Console.WriteLine(sum);
                     return sum;
                 }
                 return 0;
